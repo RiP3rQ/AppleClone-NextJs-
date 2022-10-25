@@ -12,7 +12,6 @@ const Home: NextPage = () => {
       </Head>
       {/* Header */}
       <Header />
-      <h1 className="">Let's build apple website</h1>
     </div>
   );
 };
