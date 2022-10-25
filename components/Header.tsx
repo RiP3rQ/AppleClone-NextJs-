@@ -8,6 +8,8 @@ import {
 } from "@heroicons/react/24/outline";
 
 function Header() {
+  const session = false;
+
   return (
     <header className="p4 sticky top-0 z-30 flex w-full items-center justify-between bg-[#E7ECEE] p-4">
       {/* Logo */}
@@ -29,8 +31,10 @@ function Header() {
 
       {/* search ,Shopping cart, login */}
       <div className="md:1/5 flex items-center justify-center gap-x-4 md:w-1/5">
+        {/* search */}
         <MagnifyingGlassIcon className="headerIcon" />
 
+        {/* shopping cart */}
         <Link href="/checkout">
           <div className="relative cursor-pointer">
             <span className="absolute -right-1 -top-1 z-50 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-violet-500">
@@ -39,6 +43,26 @@ function Header() {
             <ShoppingBagIcon className="headerIcon" />
           </div>
         </Link>
+
+        {/* login */}
+        {session ? (
+          <Image
+            src={
+              // session.user?.image ||
+              "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+            }
+            alt=""
+            className="cursor-pointer rounded-full"
+            width={34}
+            height={34}
+            // onClick={() => signOut()}
+          />
+        ) : (
+          <UserCircleIcon
+            className="headerIcon"
+            // onClick={() => signIn()}
+          />
+        )}
       </div>
     </header>
   );
