@@ -14,7 +14,7 @@ const Home: NextPage = () => {
 
       <Header />
 
-      <main>
+      <main className="relative h-[200vh] bg-[#e7ecee]">
         <Landing />
       </main>
     </div>
