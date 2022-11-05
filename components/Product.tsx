@@ -1,6 +1,8 @@
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addToBasket } from "../redux/basketSlice";
 import { urlFor } from "../sanity";
 
 interface Props {
@@ -8,7 +10,11 @@ interface Props {
 }
 
 function Product({ product }: Props) {
-  const addItemToBasket = () => {};
+  const dispatch = useDispatch();
+
+  const addItemToBasket = () => {
+    dispatch(addToBasket(product));
+  };
 
   return (
     <div className="flex h-fit w-[320px] select-none flex-col space-y-3 rounded-xl bg-[#35383C] p-8 md:h-[500px] md:w-[400px] md:p-10">
