@@ -12,16 +12,23 @@ import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import { useMediaQuery } from "react-responsive";
 import Currency from "react-currency-formatter";
+import { GetServerSideProps } from "next";
+import { fetchLineItems } from "../utils/fetchLineItems";
 
-function Success() {
+interface Props {
+  products: StripeProduct[];
+}
+
+function Success({ products }: Props) {
+  console.log(products);
   const router = useRouter();
   const { session_id } = router.query;
   const [mounted, setMounted] = useState(false);
   const [showOrderSummary, setShowOrderSummary] = useState(false);
-  //   const subtotal = products.reduce(
-  //     (acc, product) => acc + product.price.unit_amount / 100,
-  //     0
-  //   );
+  const subtotal = products.reduce(
+    (acc, product) => acc + product.price.unit_amount / 100,
+    0
+  );
 
   useEffect(() => {
     setMounted(true);
@@ -138,7 +145,7 @@ function Success() {
                 </button>
 
                 <p className="text-xl font-medium text-black">
-                  {/* <Currency quantity={subtotal + 20} /> */}
+                  <Currency quantity={subtotal + 20} />
                 </p>
               </div>
             </div>
@@ -156,3 +163,16 @@ function Success() {
 }
 
 export default Success;
+
+export const getServerSideProps: GetServerSideProps<Props> = async ({
+  query,
+}) => {
+  const sessionId = query.session_id as string;
+  const products = await fetchLineItems(sessionId);
+
+  return {
+    props: {
+      products,
+    },
+  };
+};

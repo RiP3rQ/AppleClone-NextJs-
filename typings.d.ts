@@ -10,6 +10,7 @@ interface Category {
     };
     title: string;
   }
+  
 interface Image {
     _key: string;
     _type: "image";
@@ -17,6 +18,7 @@ interface Image {
       url: string;
     };
   }
+
 interface Product {
     _id: string;
     _createdAt: string;
@@ -35,4 +37,19 @@ interface Product {
       _ref: string;
     };
     image: Image[];
+  }
+
+  interface StripeProduct {
+    id: string;
+    amount_discount: number;
+    amount_subtotal: number;
+    amount_tax: number;
+    amount_total: number;
+    currency: string;
+    description: string;
+    object: string;
+    quantity: number;
+    price: {
+      unit_amount: number;
+    };
   }
