@@ -8,6 +8,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useSelector } from "react-redux";
 import { selectBasketItems } from "../redux/basketSlice";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 function Header() {
   const session = false;
@@ -63,10 +64,7 @@ function Header() {
             // onClick={() => signOut()}
           />
         ) : (
-          <UserCircleIcon
-            className="headerIcon"
-            // onClick={() => signIn()}
-          />
+          <UserCircleIcon className="headerIcon" onClick={() => signIn()} />
         )}
       </div>
     </header>

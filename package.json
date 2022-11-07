@@ -13,6 +13,7 @@
     "@sanity/image-url": "^1.0.1",
     "@stripe/stripe-js": "^1.42.1",
     "next": "latest",
+    "next-auth": "0.0.0-pr.5745.7387139f",
     "next-sanity": "^1.0.0",
     "react": "18.1.0",
     "react-currency-formatter": "^1.1.0",
